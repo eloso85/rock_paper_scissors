@@ -1,11 +1,11 @@
-const userScore = 0;
-const computerScore = 0;
+let userScore = 0;
+let computerScore = 0;
 
 const playerScore = document.getElementById("user-score");
 const comScore = document.getElementById("computer-score");
 
 const scoreBoard = document.querySelector(".score-board");
-const result = document.querySelector(".result");
+const result = document.querySelector(".result > p");
 
 const rock = document.getElementById("r");
 const paper = document.getElementById("p");
@@ -17,16 +17,50 @@ function getcomputerChoice() {
     return choices[randomNumber]
 }
 
-function win(){
-    console.log('win')
+function converToWord (letter){
+    if (letter === "r" ) 
+        return "Rock";
+    if (letter === "p")
+        return "Paper";
+    if (letter === "s")
+        return "Scissors"
+        
 }
 
-function win(){
-    console.log('win')
+function win(user, computer){
+    userScore++;
+    playerScore.innerHTML = userScore;
+    comScore.innerHTML = computerScore;
+    const smallUserWord = "user".fontsize(3).sup();
+    const smallCompWord = "com".fontsize(3).sup();
+
+    result.innerHTML = `${converToWord(user)}${smallUserWord} beats  ${converToWord(computer)}${smallCompWord}. You win! `
+    console.log(user);
+    console.log(computer);
 }
 
-function win(){
-    console.log('win')
+function lose(user,computer){
+    computerScore++;
+    playerScore.innerHTML = userScore;
+    comScore.innerHTML = computerScore;
+    const smallUserWord = "user".fontsize(3).sup();
+    const smallCompWord = "com".fontsize(3).sup();
+
+    result.innerHTML = `${converToWord(user)}${smallUserWord} loses  ${converToWord(computer)}${smallCompWord}. You lost! `
+    console.log(user);
+    console.log(computer);
+}
+
+function draw(){
+    userScore++;
+    playerScore.innerHTML = userScore;
+    comScore.innerHTML = computerScore;
+    const smallUserWord = "user".fontsize(3).sup();
+    const smallCompWord = "com".fontsize(3).sup();
+
+    result.innerHTML = `${converToWord(user)}${smallUserWord} beats  ${converToWord(computer)}${smallCompWord}. You win! `
+    console.log(user);
+    console.log(computer);
 }
 
 function game(userChoice) {
@@ -35,19 +69,19 @@ function game(userChoice) {
         case "rs":
         case "pr":
         case "sp":
-            win()
+            win(userChoice,computerChoice)//this is being reflected in win and being changed to user and computer
             break;
 
         case "rp":
         case "ps":
         case "sr":
-            lose();
+            lose(userChoice,computerChoice);
             break;
 
         case "rr":
         case "pp":
         case "ss":
-            draw();
+            draw(userChoice,computerChoice);
 
             break;
     }
